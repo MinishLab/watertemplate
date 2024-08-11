@@ -19,7 +19,7 @@ clean: ## Clean up
 venv:  ## Create venv
 	test -d $(VENV_PATH) || $(SYSTEM_PYTHON) -m venv $(VENV_PATH) && $(PIP_CMD) install --upgrade pip uv
 
-install: venv
+install: venv ## Install dependencies
 	$(PYTHON_CMD) -m uv pip install -r requirements/requirements-$(OS).txt
 	$(PYTHON_CMD) -m uv pip install --no-deps -e .
 	$(VENV_PATH)/bin/pre-commit install

@@ -31,5 +31,5 @@ fix:  ## Run pre-commit
 	$(VENV_PATH)/bin/pre-commit run --all-files
 
 compile:  ## Compile requirements.txt from pyproject.toml for macos and linux
-	$(VENV_PATH)/bin/uv pip compile pyproject.toml --upgrade --python-platform macos --output-file=requirements/requirements-macos.txt
-	$(VENV_PATH)/bin/uv pip compile pyproject.toml --upgrade --python-platform linux --output-file=requirements/requirements-linux.txt
+	$(VENV_PATH)/bin/uv pip compile pyproject.toml --upgrade --python-platform macos --output-file=requirements/requirements-macos.txt --all-extras
+	$(VENV_PATH)/bin/uv pip compile pyproject.toml --upgrade --python-platform linux --output-file=requirements/requirements-linux.txt --all-extras

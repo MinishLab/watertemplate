@@ -35,6 +35,12 @@ select = [
     # Print: Forbid print statements
     "T20",
 ]
+ignore = [
+    # Allow self and cls to be untyped, and allow Any type
+    "ANN101", "ANN102", "ANN401",
+    # Allow use of f-strings in logging
+    "G004"
+]
 
 [tool.mypy]
 python_version = "3.10"

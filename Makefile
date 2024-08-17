@@ -22,6 +22,7 @@ venv:  ## Create venv
 install: venv ## Install dependencies
 	$(PYTHON_CMD) -m uv pip install -r requirements/requirements-$(OS).txt
 	$(PYTHON_CMD) -m uv pip install --no-deps -e .
+	$(PYTHON_CMD) -m uv mypy --install-types
 	$(VENV_PATH)/bin/pre-commit install
 
 test:  ## Run pytest

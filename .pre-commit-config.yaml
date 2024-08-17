@@ -20,6 +20,10 @@ repos:
       - id: ruff
         args: [ --fix ]
       - id: ruff-format
+  - repo: https://github.com/jsh9/pydoclint
+    rev: 0.5.3
+    hooks:
+      - id: pydoclint
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.10.0
     hooks:

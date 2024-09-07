@@ -1,5 +1,5 @@
 # watertemplate
-Our Cookiecutter template
+Our template
 
 ## Usage
 To start a new project, follow the steps below:

@@ -2,7 +2,7 @@
 name = "PACKAGE"
 description = "DESCRIPTION"
 readme = "README.md"
-version = "0.1.0"
+dynamic = ["version"]
 requires-python = ">=3.10"
 
 dependencies = [
@@ -14,7 +14,6 @@ build-backend = "setuptools.build_meta"
 
 [project.optional-dependencies]
 dev = [
-    "black",
     "ipython",
     "mypy",
     "pre-commit",
@@ -70,3 +69,6 @@ packages = ["PACKAGE"]
 
 [tool.setuptools_scm]
 # can be empty if no extra settings are needed, presence enables setuptools_scm
+
+[tool.setuptools.dynamic]
+version = {attr = "PACKAGE.version.__version__"}

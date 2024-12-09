@@ -35,6 +35,8 @@ select = [
     "C90",
     # Pydocstyle: Enforce docstrings
     "D",
+    # Pyflakes.
+    "F",
     # Isort: Enforce import order
     "I",
     # Numpy: Enforce numpy style

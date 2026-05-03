@@ -74,3 +74,6 @@ packages = ["PACKAGE"]
 
 [tool.setuptools.dynamic]
 version = {attr = "PACKAGE.version.__version__"}
+
+[tool.uv]
+exclude-newer = "1 week"

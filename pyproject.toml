@@ -1,31 +1,63 @@
-[project]
-name = "PACKAGE"
-description = "DESCRIPTION"
-readme = "README.md"
-dynamic = ["version"]
-requires-python = ">=3.10"
-
-dependencies = [
-]
-
 [build-system]
 requires = ["setuptools>=64", "setuptools_scm>=8"]
 build-backend = "setuptools.build_meta"
 
-[project.optional-dependencies]
-dev = [
-    "ipython",
-    "mypy",
-    "pre-commit",
-    "pytest",
-    "pytest-coverage",
-    "ruff",
+[project]
+name = "PACKAGE"
+description = "DESCRIPTION"
+authors = [{name = "NAME", email = "EMAIL"}]
+readme = { file = "README.md", content-type = "text/markdown" }
+dynamic = ["version"]
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+keywords = []
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Natural Language :: English",
 ]
 
+dependencies = [
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.0",
+    "pre-commit>=3.0",
+    "pydoclint>=0.5.3",
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.9.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/MinishLab/PACKAGE"
+"Bug Reports" = "https://github.com/MinishLab/PACKAGE/issues"
+"Source" = "https://github.com/MinishLab/PACKAGE"
+
+[tool.setuptools]
+packages = ["PACKAGE"]
+license-files = ["LICENSE*"]
+
+[tool.setuptools_scm]
+# can be empty if no extra settings are needed, presence enables setuptools_scm
+
+[tool.setuptools.dynamic]
+version = {attr = "PACKAGE.version.__version__"}
+
 [tool.ruff]
-exclude = [".venv/", "*.ipynb"]
+exclude = [".venv/"]
 line-length = 120
 target-version = "py310"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN"]
 
 [tool.ruff.lint]
 select = [
@@ -35,7 +67,9 @@ select = [
     "C90",
     # Pydocstyle: Enforce docstrings
     "D",
-    # Pyflakes.
+    # Pycodestyle errors
+    "E",
+    # Remove unused imports
     "F",
     # Isort: Enforce import order
     "I",
@@ -45,12 +79,10 @@ select = [
     "T20",
 ]
 ignore = [
-    # Allow self and cls to be untyped, and allow Any type
-    "ANN101", "ANN102", "ANN401",
+    # Allow Any type
+    "ANN401",
     # Pydocstyle ignores
     "D100", "D101", "D104", "D203", "D213", "D401",
-    # Allow use of f-strings in logging
-    "G004"
 ]
 
 [tool.pydoclint]
@@ -66,14 +98,16 @@ python_version = "3.10"
 warn_unused_configs = true
 ignore_missing_imports = true
 
-[tool.setuptools]
-packages = ["PACKAGE"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--tb=short", "--strict-markers", "--cov=PACKAGE", "--cov-report=term-missing"]
 
-[tool.setuptools_scm]
-# can be empty if no extra settings are needed, presence enables setuptools_scm
+[tool.coverage.run]
+relative_files = true
 
-[tool.setuptools.dynamic]
-version = {attr = "PACKAGE.version.__version__"}
+[tool.coverage.report]
+skip_covered = true
+exclude_also = ["if __name__ == .__main__.:", "@abstractmethod"]
 
 [tool.uv]
 exclude-newer = "1 week"
